@@ -1,7 +1,7 @@
 from datetime import date, timedelta
 
-from models import PreparedRequest, Response
-from utils import chunks, encode_date
+from .models import PreparedRequest, Response
+from .utils import chunks, encode_date
 
 
 def get_accounts(with_deleted=True):

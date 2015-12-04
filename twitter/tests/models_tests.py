@@ -2,9 +2,10 @@ import time
 import unittest
 
 import requests
-from models import PreparedRequest, Adapter, Response
 from mock import Mock, MagicMock, patch
 from requests_oauthlib import OAuth1
+
+from ..models import PreparedRequest, Adapter, Response
 
 
 class RequestTests(unittest.TestCase):

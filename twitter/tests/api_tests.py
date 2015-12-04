@@ -2,8 +2,8 @@ import unittest
 
 from mock import patch
 
-from api import get_accounts, get_campaigns, get_line_items, get_promoted_tweets, get_stats
-from models import Response
+from ..api import get_accounts, get_campaigns, get_line_items, get_promoted_tweets, get_stats
+from ..models import Response
 
 
 class GetAccountsTests(unittest.TestCase):

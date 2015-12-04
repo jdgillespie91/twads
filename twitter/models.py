@@ -3,8 +3,8 @@ import time
 import requests
 from requests_oauthlib import OAuth1
 
-from structures import StringDescriptor, DictDescriptor, ListDescriptor
-from config import CONFIG
+from .config import CONFIG
+from .structures import StringDescriptor, DictDescriptor, ListDescriptor
 
 
 class PreparedRequest(object):
