@@ -140,7 +140,6 @@ class Adapter(object):
                 # until then.
                 if resp.status_code == 429:
                     sleep_for = max(0, int(resp.headers['x-cost-rate-limit-reset']) - int(time.time()))
-                    print('Sleeping for {0} seconds'.format(sleep_for))
                     time.sleep(sleep_for)
 
                 tries += 1

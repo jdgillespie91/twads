@@ -57,7 +57,8 @@ def get_campaigns(account_ids=None, with_deleted=True):
     response = Response()  # Instantiate empty Response so we have something to append to.
     for account_id in account_ids:
         required_parameters = {'account_id': account_id}
-        optional_parameters = {'with_deleted': str(with_deleted).lower()}
+        optional_parameters = {'with_deleted': str(with_deleted).lower(),
+                               'count': 1000}
         prepared_request = PreparedRequest(resource='campaigns',
                                            required_parameters=required_parameters,
                                            optional_parameters=optional_parameters)
@@ -94,7 +95,8 @@ def get_line_items(account_ids=None, with_deleted=True):
     response = Response()  # Instantiate empty Response so we have something to append to.
     for account_id in account_ids:
         required_parameters = {'account_id': account_id}
-        optional_parameters = {'with_deleted': str(with_deleted).lower()}
+        optional_parameters = {'with_deleted': str(with_deleted).lower(),
+                               'count': 1000}
         prepared_request = PreparedRequest(resource='line_items',
                                            required_parameters=required_parameters,
                                            optional_parameters=optional_parameters)
@@ -131,7 +133,8 @@ def get_promoted_tweets(account_ids=None, with_deleted=True):
     response = Response()  # Instantiate empty Response so we have something to append to.
     for account_id in account_ids:
         required_parameters = {'account_id': account_id}
-        optional_parameters = {'with_deleted': str(with_deleted).lower()}
+        optional_parameters = {'with_deleted': str(with_deleted).lower(),
+                               'count': 1000}
         prepared_request = PreparedRequest(resource='promoted_tweets',
                                            required_parameters=required_parameters,
                                            optional_parameters=optional_parameters)

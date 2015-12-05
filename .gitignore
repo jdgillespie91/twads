@@ -1,2 +1,5 @@
-__pycache__
+.idea/*
+docs/_build/*
+twitter/__pycache__/*
 twitter/config.py
+twitter/tests/__pycache__/*
