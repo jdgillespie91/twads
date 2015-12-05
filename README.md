@@ -14,7 +14,8 @@ Getting up and running is extremely easy. In short,
 >>> twitter.get_accounts()
 <Twitter Response [OK]>
 ```
-At some point in the future, I'll create a more detailed guide on how to get up-and-running with this package. You can track the progress of this [here](https://github.com/jdgillespie91/twitter-ads-api/issues/6).
+
+For a more detailed guide on getting up and running, head over to [the online documentation](http://twitter-ads-api.readthedocs.org/en/latest/).
 
 ## Contributing and suggesting improvements
 

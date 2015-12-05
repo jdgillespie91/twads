@@ -95,7 +95,7 @@ Another of these entities is promoted tweets. Again, it is called in the same wa
 Stats
 -----
 
-The last available function is :samp:`get_stats`. A word of warning before using this function; as with the other requests listed here, this function sends multiple requests to the Twitter Ads API. Compartively though, this sends significantly more[#]_. Further, Twitter have put rate limiting in place against this resource so it's necessary to sleep at times. As such, it's definitely worth specifying :samp:`account_ids` initially and easing this constraint as you grow more comfortable with the function.
+The last available function is :samp:`get_stats`. A word of warning before using this function; as with the other requests listed here, this function sends multiple requests to the Twitter Ads API. Comparatively though, this sends significantly more [#]_. Further, Twitter have put rate limiting in place against this resource so it's necessary to sleep at times. As such, it's definitely worth specifying :samp:`account_ids` initially and easing this constraint as you grow more comfortable with the function.
 
 ::
 
