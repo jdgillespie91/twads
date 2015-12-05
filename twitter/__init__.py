@@ -1,11 +1,18 @@
-""" Welcome to the Twitter API.
+# TODO Include link to docs below
+""" TwitterAds
 
-Foo. Bar. Baz.
+Welcome to TwitterAds; a Python wrapper around the Twitter Ads API.
+
+The basic usage is as follows
+
+    >>> import twitter
+    >>> accounts = twitter.get_accounts()
+    >>> accounts
+    <Twitter Response [OK]>
+
+More extensive documentation can be found at ...
 
 """
-
-from .api import get_accounts, get_campaigns, get_line_items, get_promoted_tweets, get_tweets
+from .api import get_accounts, get_campaigns, get_line_items, get_promoted_tweets, \
+    get_tweets, get_stats
 from .models import PreparedRequest
-
-# TODO Write docstrings and create necessary logic such that the package can be used as an
-# API.

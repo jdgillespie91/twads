@@ -41,22 +41,18 @@ class PreparedRequest(object):
 
     Usage::
 
-        >>> import infrastructure.apis import twitter
-        >>> request = twitter.PreparedRequest(resource='accounts')
-        >>> request.send()
-        <Twitter Response [Complete]>
+        >>> import twitter
+        >>> prepared_request = twitter.PreparedRequest(resource='accounts')
+        >>> prepared_request.send()
+        <Twitter Response [OK]>
 
-        >>> request = twitter.PreparedRequest(resource='campaigns',
-                                              required_parameters={'account_id': 'xxx'},
-                                              optional_parameters={'with_deleted': 'false'})
-        >>> request.send()
-        <Twitter Response [Complete]>
+        >>> prepared_request = twitter.PreparedRequest(resource='campaigns',
+                                                       required_parameters={'account_id': 'xxx'},
+                                                       optional_parameters={'with_deleted': 'false'})
+        >>> prepared_request.send()
+        <Twitter Response [OK]>
 
     """
-    # TODO Go through the docstrings, run the associated code and ensure the output is
-    # accurate.
-    # TODO Make a note to move resource documentation and endpoint selection to the same
-    # class! Either here or the Adapter, but not both.
     resource = StringDescriptor()
     api = StringDescriptor()
     required_parameters = DictDescriptor()
@@ -100,14 +96,6 @@ class Adapter(object):
     :return Response: a response object.
 
     """
-    # TODO Go through the docstrings, run the associated code and ensure the output is
-    # accurate.
-    # TODO Find a way of declaring the endpoints in a more concise and extendable fashion.
-    # If I have to implement each endpoint individually, it should at least be extremely
-    # easy to do this.
-    # TODO Decide what to put in the errors list. Do this by hitting a bunch of requests,
-    # getting some errors and thinking about what would be useful if you were to required
-    # to debug that error.
     _base_endpoint = 'https://ads-api.twitter.com/0'
     _accounts_endpoint = _base_endpoint + '/accounts'
     _campaigns_endpoint = _accounts_endpoint + '/{0}/campaigns'
@@ -219,8 +207,6 @@ class Response(object):
     entities.
 
     """
-    # TODO Go through the docstrings, run the associated code and ensure the output is
-    # accurate.
     data = ListDescriptor()
     errors = ListDescriptor()
 

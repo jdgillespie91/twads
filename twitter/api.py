@@ -50,14 +50,11 @@ def get_campaigns(account_ids=None, with_deleted=True):
         <Twitter Response [OK]>
 
     """
-    # We get campaigns by account. Hence, we need to determine the accounts first.
     if not account_ids:
         accounts = get_accounts()
         account_ids = [account['id'] for account in accounts.data]
 
-    # We iterate over the list of accounts, appending every individual response to a
-    # single Response object.
-    response = Response()
+    response = Response()  # Instantiate empty Response so we have something to append to.
     for account_id in account_ids:
         required_parameters = {'account_id': account_id}
         optional_parameters = {'with_deleted': str(with_deleted).lower()}
@@ -90,14 +87,11 @@ def get_line_items(account_ids=None, with_deleted=True):
         <Twitter Response [OK]>
 
     """
-    # We get line_items by account. Hence, we need to determine the accounts first.
     if not account_ids:
         accounts = get_accounts()
         account_ids = [account['id'] for account in accounts.data]
 
-    # We iterate over the list of accounts, appending every individual response to a
-    # single Response object.
-    response = Response()
+    response = Response()  # Instantiate empty Response so we have something to append to.
     for account_id in account_ids:
         required_parameters = {'account_id': account_id}
         optional_parameters = {'with_deleted': str(with_deleted).lower()}
@@ -130,14 +124,11 @@ def get_promoted_tweets(account_ids=None, with_deleted=True):
         <Twitter Response [OK]>
 
     """
-    # We get promoted_tweets by account. Hence, we need to determine the accounts first.
     if not account_ids:
         accounts = get_accounts()
         account_ids = [account['id'] for account in accounts.data]
 
-    # We iterate over the list of accounts, appending every individual response to a
-    # single Response object.
-    response = Response()
+    response = Response()  # Instantiate empty Response so we have something to append to.
     for account_id in account_ids:
         required_parameters = {'account_id': account_id}
         optional_parameters = {'with_deleted': str(with_deleted).lower()}
@@ -172,9 +163,7 @@ def get_stats(account_ids=None, start_date=None, end_date=None):
         <Twitter Response [OK]>
 
     """
-    # We get stats by account and promoted_tweet. Hence, we need to determine the accounts
-    # first. We always call get_accounts since we need the account timezone information.
-    accounts = get_accounts()
+    accounts = get_accounts()  # Always get_accounts because we need the account timezone.
     if account_ids:
         accounts_data = [account for account in accounts.data if account['id'] in account_ids]
     else:
@@ -186,9 +175,7 @@ def get_stats(account_ids=None, start_date=None, end_date=None):
     if not end_date:
         end_date = date.today().strftime('%Y-%m-%d')
 
-    # We iterate over the list of accounts, appending every individual response to a
-    # single Response object.
-    response = Response()
+    response = Response()  # Instantiate empty Response so we have something to append to.
     for account in accounts_data:
         promoted_tweets = get_promoted_tweets(account_ids=[account['id']])
         promoted_tweet_ids = [promoted_tweet['id'] for promoted_tweet in promoted_tweets.data]
