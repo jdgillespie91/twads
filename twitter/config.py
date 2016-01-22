@@ -1,4 +1,4 @@
-CONFIG = {'CONSUMER_KEY': 'xxx',
-          'CONSUMER_SECRET': 'xxx',
-          'ACCESS_KEY': 'xxx',
-          'ACCESS_SECRET': 'xxx'}
+CONFIG = {'CONSUMER_KEY': 'b6hkhq6t7d8mPHes9GSGBwJKO',
+          'CONSUMER_SECRET': '7jwjGC0GCPIcTtSN8QEX4qhzEozYpM8Ev6sRVejFDYPPlmatRR',
+          'ACCESS_KEY': '14321364-BC9VSouZL3V7MEw89fhpyxZjsZFfcKIXc7jU5COUL',
+          'ACCESS_SECRET': 'gKGU4UWJuARoe6DY80cg5FpRrIGK62WoqdMOr9ucsZLfl'}

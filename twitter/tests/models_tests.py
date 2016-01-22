@@ -5,7 +5,7 @@ import requests
 from mock import Mock, MagicMock, patch
 from requests_oauthlib import OAuth1
 
-from ..models import PreparedRequest, Adapter, Response
+from twitter.models import PreparedRequest, Adapter, Response
 
 
 class RequestTests(unittest.TestCase):
@@ -72,10 +72,10 @@ class RequestTests(unittest.TestCase):
                 request.optional_parameters = non_dict
 
     def test_send_method_calls_adapter_send_method(self):
-        with patch.object(PreparedRequest, 'send', return_value=None) as request_send:
+        with patch.object(Adapter, 'send', return_value=None) as request_send:
             request = PreparedRequest(resource=self.foo_string)
             request.send()
-        request_send.assert_called_once()
+        assert request_send.call_count == 1
 
     def test_send_method_returns_response_object(self):
         with patch.object(Adapter, 'send', return_value=Response()) as adapter_send:

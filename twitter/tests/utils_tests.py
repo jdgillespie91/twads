@@ -1,6 +1,6 @@
 import unittest
 
-from ..utils import encode_date
+from twitter.utils import encode_date
 
 
 class EncodeDateTests(unittest.TestCase):
