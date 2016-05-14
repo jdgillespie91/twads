@@ -78,7 +78,7 @@ class RequestTests(unittest.TestCase):
         assert request_send.call_count == 1
 
     def test_send_method_returns_response_object(self):
-        with patch.object(Adapter, 'send', return_value=Response()) as adapter_send:
+        with patch.object(Adapter, 'send', return_value=Response()):
             request = PreparedRequest(resource=self.foo_string)
             response = request.send()
         self.assertIsInstance(response, Response)
@@ -280,13 +280,13 @@ class AdapterTests(unittest.TestCase):
     @patch('requests.get')
     @patch('time.time')
     @patch('time.sleep')
-    def test_retry_request_calls_requests_get_correct_number_of_times(self, mock_sleep, mock_time, mock_get):
+    def test_retry_correct_number_of_times(self, mock_sleep, mock_time, mock_get):
         resp = Mock()
-        resp.status_code = 429  # This value needs to be in retry_codes as defined in _retry_request.
+        resp.status_code = 429  # This needs to be one of the retriable values.
         resp.headers = {'x-cost-rate-limit-reset': 0}
         mock_get.return_value = resp
         self.accounts_adapter._retry_request()
-        self.assertEquals(mock_get.call_count, 4)  # This value needs to be one greater than max_tries as defined in _retry_request.
+        self.assertEquals(mock_get.call_count, 4)  # See max_tries in _retry_request.
 
     @patch('requests.get')
     def test_retry_request_only_retries_for_correct_status_code(self, mock_get):
@@ -299,11 +299,11 @@ class AdapterTests(unittest.TestCase):
     @patch('requests.get')
     @patch('time.time')
     @patch('time.sleep')
-    def test_retry_request_sleeps_for_correct_amount_of_time_if_api_returns_429(self, mock_sleep, mock_time, mock_get):
+    def test_retry_sleeps_correctly(self, mock_sleep, mock_time, mock_get):
         """ If the API returns a 429, we should sleep until the rate limit is reset. """
         now_time = int(time.time())
         mock_time.return_value = now_time
-        reset_times = [now_time + 10, now_time + 20]  # Test two different times to prevent hard-coding one.
+        reset_times = [now_time + 10, now_time + 20]
 
         for reset_time in reset_times:
             resp = Mock()

@@ -46,9 +46,11 @@ class PreparedRequest(object):
         >>> prepared_request.send()
         <Twitter Response [OK]>
 
-        >>> prepared_request = twitter.PreparedRequest(resource='campaigns',
-                                                       required_parameters={'account_id': 'xxx'},
-                                                       optional_parameters={'with_deleted': 'false'})
+        >>> prepared_request = twitter.PreparedRequest(
+        ...     resource='campaigns',
+        ...     required_parameters={'account_id': 'xxx'},
+        ...     optional_parameters={'with_deleted': 'false'}
+        ... )
         >>> prepared_request.send()
         <Twitter Response [OK]>
 
@@ -139,7 +141,9 @@ class Adapter(object):
                 # time at which our rate limit will reset (at most, 15 minutes). We sleep
                 # until then.
                 if resp.status_code == 429:
-                    sleep_for = max(0, int(resp.headers['x-cost-rate-limit-reset']) - int(time.time()))
+                    sleep_for = max(
+                        0, int(resp.headers['x-cost-rate-limit-reset']) - int(time.time())
+                    )
                     time.sleep(sleep_for)
 
                 tries += 1
@@ -181,8 +185,10 @@ class Adapter(object):
         # If the resource requested is stats, some required parameters need to be passed
         # along with the optional parameters.
         if self.request.resource == 'stats':
-            self.request.optional_parameters['promoted_tweet_ids'] = self.request.required_parameters['promoted_tweet_ids']
-            self.request.optional_parameters['start_time'] = self.request.required_parameters['start_time']
+            opt_params = self.request.optional_parameters
+            req_params = self.request.required_parameters
+            opt_params['promoted_tweet_ids'] = req_params['promoted_tweet_ids']
+            opt_params['start_time'] = req_params['end_time']
         return self.request.optional_parameters
 
     def __repr__(self):

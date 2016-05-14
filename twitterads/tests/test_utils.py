@@ -37,5 +37,3 @@ if __name__ == "__main__":
     for test_case in test_cases:
         suite = unittest.TestLoader().loadTestsFromTestCase(test_case)
         unittest.TextTestRunner(verbosity=2).run(suite)
-
-
