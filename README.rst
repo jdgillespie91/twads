@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.org/jdgillespie91/twitter-ads-api.svg?branch=master
+    :target: https://travis-ci.org/jdgillespie91/twitter-ads-api
+
 ==========
 TwitterAds
 ==========
