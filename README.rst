@@ -11,14 +11,13 @@ Getting started
 ---------------
 
 Getting up and running is extremely easy. In short,
-- Clone the repository
-- Replace the credentials in `config.py` with your own
-- Get some data
+* Clone the repository
+* Replace the credentials in `config.py` with your own
+* Get some data::
 
-::
->>> import twitter
->>> twitter.get_accounts()
-<Twitter Response [OK]>
+    >>> import twitter
+    >>> twitter.get_accounts()
+    <Twitter Response [OK]>
 
 For a more detailed guide on getting up and running, head over to `the online documentation <http://twitter-ads-api.readthedocs.org/en/latest/>`_.
 
