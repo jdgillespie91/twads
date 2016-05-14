@@ -24,7 +24,7 @@ Fetch some data with
     >>> client = twitterads.get_client(
     ...     consumer_key='xxx',consumer_secret='xxx', access_key='xxx', access_secret='xxx'
     ... )
-    >>> twitter.get_accounts()
+    >>> client.get_accounts()
     <Twitter Response [OK]>
 
 For a more detailed guide on getting up and running, head over to `the online documentation <http://twitter-ads-api.readthedocs.org/en/latest/>`_.
