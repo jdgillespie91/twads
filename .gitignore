@@ -1,5 +1,5 @@
 .idea/*
 docs/_build/*
-twitter/__pycache__/*
-twitter/config.py
-twitter/tests/__pycache__/*
+twitterads/__pycache__/*
+twitterads/config.py
+twitterads/tests/__pycache__/*
