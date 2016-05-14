@@ -4,7 +4,7 @@ TwitterAds
 
 Welcome to TwitterAds; a Python wrapper around the Twitter Ads API.
 
-The Twitter Ads API exposes a bunch of useful resources but interacting with each resource demands a certain familiarity with the API and the Twitter advertising platform. This package aims to ease these requirements where possible.
+The Twitter Ads API exposes a bunch of useful resources but interacting with each resource demands a certain familiarity with the API and the Twitter advertising platform. This package aims to ease that requirement where possible.
 
 ---------------
 Getting started
