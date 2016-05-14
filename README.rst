@@ -13,7 +13,9 @@ Getting started
 Getting up and running is extremely easy. In short,
 * Clone the repository
 * Replace the credentials in `config.py` with your own
-* Get some data::
+* Get some data
+
+.. code:: python
 
     >>> import twitter
     >>> twitter.get_accounts()
