@@ -28,7 +28,7 @@ For a more detailed guide on getting up and running, head over to `the online do
 Contributing and suggesting improvements
 ----------------------------------------
 
-Contributions are more than welcome! Simply fork the repository, make your changes locally and open up a pull request for review. You'll find a more detailed guide on this proecdure `here <https://guides.github.com/activities/contributing-to-open-source/>_`.
+Contributions are more than welcome! Simply fork the repository, make your changes locally and open up a pull request for review. You'll find a more detailed guide on this proecdure `here <https://guides.github.com/activities/contributing-to-open-source/>`_.
 
 If you've come across any issues or would like to suggest improvements, please open up an issue `here  <https://github.com/jdgillespie91/twitter-ads-api/issues>`_.
 
