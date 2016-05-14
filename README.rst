@@ -10,20 +10,18 @@ The Twitter Ads API exposes a bunch of useful resources but interacting with eac
 Getting started
 ---------------
 
-Getting up and running is extremely easy.
+Getting up and running is extremely easy. Install the package with
 
 .. code:: bash
 
     pip install twitterads
 
-.. code:: python
+Fetch some data with
 
+.. code:: python
     >>> import twitterads
     >>> client = twitterads.get_client(
-    ...     consumer_key='xxx',
-    ...     consumer_secret='xxx',
-    ...     access_key='xxx',
-    ...     access_secret='xxx'
+    ...     consumer_key='xxx',consumer_secret='xxx', access_key='xxx', access_secret='xxx'
     ... )
     >>> twitter.get_accounts()
     <Twitter Response [OK]>
