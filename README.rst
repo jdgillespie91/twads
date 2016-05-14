@@ -15,9 +15,7 @@ Getting up and running is extremely easy. Install the package with
 .. code:: bash
 
     pip install twitterads
-
 Fetch some data with
-
 .. code:: python
     >>> import twitterads
     >>> client = twitterads.get_client(
