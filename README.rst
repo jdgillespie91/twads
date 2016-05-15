@@ -45,3 +45,76 @@ Acknowledgements
 ----------------
 
 This library wouldn't exist without `requests <http://docs.python-requests.org/en/latest/>`_ whose model is the source of inspiration for the one you see here. Not only is the model a good one, the library is so wonderfully written that understanding it is simply a case of reading it.
+
+--------------
+Intended usage
+--------------
+
+Here, I will document by example how I want to use this package. This will aid development.
+
+All requests should be handled by an authenticated client.
+
+.. code:: python
+
+    >>> client = twitterads.get_client(
+    ...     client_key='...',
+    ...     client_secret='...',
+    ...     resource_owner_key='...',
+    ...     resource_owner_secret='...'
+    ... )
+
+We should be able to instantiate a :code:`PreparedRequest` with a resource and send it via the client.
+
+.. code:: python
+
+    >>> request = twitterads.PreparedRequest(resource='accounts')
+    >>> client.send(request)
+    <Twitter Response [OK]>
+
+We should be able to send :code:`Request` objects too (the client should prepare these).
+
+.. code:: python
+
+    >>> request = twitterads.Request(resource='accounts')
+    >>> client.send(request)
+    <Twitter Response [OK]>
+
+With both types of request, we don't want to validate the parameters on input. However, :code:`Request` objects should have the :code:`prepare` method implemented and it should ensure it's parameters are fit for sending.
+
+.. code:: python
+
+    >>> request = twitterads.Request(resource='campaigns')  # The campaigns resource requires an account ID. The client will fetch it when preparing the request.
+    >>> client.send(request)
+    <Twitter Response [OK]>
+
+    >>> request = twitterads.PreparedRequest(resource='campaigns')  # The campaigns resource requires an account ID. However, since this request is already prepared, we don't fetch it.
+    >>> client.send(request)
+    <Twitter Response [Incomplete]>
+
+We should be able to pass additional keyword arguments that make up the rest of the parameters in the request.
+
+.. code:: python
+
+    >>> request = twitterads.PreparedRequest(resource='campaigns', account_id='abc123')
+    >>> client.send(request)
+    <Twitter Response [OK]>
+
+The additional keyword arguments should be accepted in either the form of the API or in a Pythonic way.
+
+.. code:: python
+
+    >>> request = twitterads.PreparedRequest(resource='accounts', with_deleted=True)
+    >>> client.send(request)
+    <Twitter Response [OK]>
+
+    >>> request = twitterads.PreparedRequest(resource='accounts', with_deleted='true')
+    >>> client.send(request)
+    <Twitter Response [OK]>
+
+If we pass an unknown resource, we should let Twitter respond with an error.
+
+.. code:: python
+
+    >>> request = twitterads.PreparedRequest(resource='unknown_resource')
+    >>> client.send(request)
+    <Twitter Response [Incomplete]>
