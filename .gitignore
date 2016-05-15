@@ -4,3 +4,4 @@ docs/_build/*
 twitterads/__pycache__/*
 twitterads/config.py
 twitterads/tests/__pycache__/*
+*.swp

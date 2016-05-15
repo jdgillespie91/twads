@@ -1,4 +1,3 @@
-# TODO Include link to docs below
 """ TwitterAds
 
 Welcome to TwitterAds; a Python wrapper around the Twitter Ads API.
@@ -10,7 +9,8 @@ The basic usage is as follows
     >>> accounts
     <Twitter Response [OK]>
 
-More extensive documentation can be found at ...
+More extensive documentation can be found at
+http://twitter-ads-api.readthedocs.io/en/latest/
 
 """
 from .api import get_accounts, get_campaigns, get_line_items, get_promoted_tweets, \
