@@ -118,3 +118,19 @@ If we pass an unknown resource, we should let Twitter respond with an error.
     >>> request = twitterads.PreparedRequest(resource='unknown_resource')
     >>> client.send(request)
     <Twitter Response [Incomplete]>
+
+At a much higher level, I'd like to be able to get all my accounts with
+
+.. code:: python
+
+    >>> request = twitterads.PreparedRequest(resource='unknown_resource')
+    >>> client.get_accounts(with_deleted=True)
+    <Twitter Response [OK]>
+
+I'd like to get all my campaigns with
+
+.. code:: python
+
+    >>> request = twitterads.PreparedRequest(resource='unknown_resource')
+    >>> client.get_campaigns(with_deleted=True)
+    <Twitter Response [OK]>
