@@ -5,7 +5,14 @@ import requests
 from mock import Mock, MagicMock, patch
 from requests_oauthlib import OAuth1
 
-from twitter.models import PreparedRequest, Adapter, Response
+from twitterads.models import PreparedRequest, Adapter, Response, Request
+
+
+class TestRequest:
+    def test_resource(self):
+        expected_resource = 'accounts'
+        actual_resource = Request(resource=expected_resource).resource
+        assert expected_resource == actual_resource
 
 
 class RequestTests(unittest.TestCase):
@@ -450,9 +457,15 @@ class ResponseTests(unittest.TestCase):
         self.assertEquals('<Twitter Response [Incomplete]>', repr(response))
 
 
-if __name__ == "__main__":
-    test_cases = [RequestTests, AdapterTests, ResponseTests]
+class TestAdapter:
+    # Intended usages
+    adapter = Adapter(auth)
+    adapter.send(request)
+    pass
 
-    for test_case in test_cases:
-        suite = unittest.TestLoader().loadTestsFromTestCase(test_case)
-        unittest.TextTestRunner(verbosity=2).run(suite)
+    def test_adapter_authnetication(self):
+        # No auth should error.
+        adapter = Adapter()
+        pass
+
+

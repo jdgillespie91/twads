@@ -3,72 +3,46 @@ import time
 import requests
 from requests_oauthlib import OAuth1
 
-from .config import CONFIG
-from .structures import StringDescriptor, DictDescriptor, ListDescriptor
+
+class Request:
+    def __init__(self, resource=None, **kwargs):
+        self._resource = resource
+
+    @property
+    def resource(self):
+        return self._resource
 
 
 class PreparedRequest(object):
-    """ A '<Twitter Prepared Request [resource]>' object.
+    """ A request, ready to be sent (in theory).
 
-    The '<Twitter Prepared Request [resource]>' object is used to send a
-    request to one of the Twitter APIs (the API called will depend on the
-    resource requested).
+    A :class:`Request` object, once prepared, becomes a
+    :class:`PreparedRequest` object. In theory, the prepared request should be
+    appropriate for the Twitter Ads API. However, this validation happens on
+    preparation of the :class:`Request` object as opposed to here so it's not
+    necessarily the case.
 
-    The following resources are available:
+    Do note that a :class:`PreparedRequest` object should be sent via a
+    :class:`Client` object.
 
-    account
-    https://dev.twitter.com/ads/reference/get/accounts
+    :param resource: the resource to access.
+    :type resource: str
 
-    campaigns
-    https://dev.twitter.com/ads/reference/get/accounts/%3Aaccount_id/campaigns
+    :Example:
 
-    line_items
-    https://dev.twitter.com/ads/reference/get/accounts/%3Aaccount_id/line_items
-
-    promoted_tweets
-    https://dev.twitter.com/ads/reference/get/accounts/%3Aaccount_id/promoted_tweets
-
-    stats
-    https://dev.twitter.com/ads/reference/get/stats/accounts/%3Aaccount_id/promoted_tweets
-
-    The documentation covers in great detail the required and optional
-    parameters. Simply pass these along with your resource to customise your
-    response. There are examples of this below.
-
-    :param resource: str, the resource to access.
-    :param required_parameters: dict, the parameters required by the resource.
-    :param optional_parameters: dict, the optional parameters for the resource.
-
-    Usage::
-
-        >>> import twitter
-        >>> prepared_request = twitter.PreparedRequest(resource='accounts')
-        >>> prepared_request.send()
+        >>> request = twitterads.PreparedRequest(resource='accounts')
+        >>> client.send(request)
         <Twitter Response [OK]>
 
-        >>> prepared_request = twitter.PreparedRequest(
-        ...     resource='campaigns',
-        ...     required_parameters={'account_id': 'xxx'},
-        ...     optional_parameters={'with_deleted': 'false'}
+        >>> request = twitter.PreparedRequest(
+        ...     resource='accounts', with_deleted=False
         ... )
-        >>> prepared_request.send()
+        >>> client.send(request)
         <Twitter Response [OK]>
 
     """
-    resource = StringDescriptor()
-    api = StringDescriptor()
-    required_parameters = DictDescriptor()
-    optional_parameters = DictDescriptor()
-
-    def __init__(self, resource, required_parameters=None, optional_parameters=None):
-        self.resource = resource
-        self.api = 'Ads API'  # Until I expose other APIs, I'll hardcode this value.
-        self.required_parameters = required_parameters if required_parameters else {}
-        self.optional_parameters = optional_parameters if optional_parameters else {}
-
-    def send(self):
-        adapter = Adapter(self)
-        return adapter.send()
+    def __init__(self, resource, **kwargs):
+        self._resource = resource
 
     def __repr__(self):
         return '<Twitter Prepared Request [{0}]>'.format(self.resource)
@@ -94,7 +68,8 @@ class Adapter(object):
     fundamentally wrong. In such instances, it may be appropriate to retry.
     The retry logic is handled here by the _retry_request() method.
 
-    :param prepared_request: PreparedRequest, a prepared request object.
+    :param prepared_request: a prepared request.
+    :type prepared_request: :class:`PreparedRequest`
     :return Response: a response object.
 
     """
@@ -102,14 +77,10 @@ class Adapter(object):
     _accounts_endpoint = _base_endpoint + '/accounts'
     _campaigns_endpoint = _accounts_endpoint + '/{0}/campaigns'
     _line_items_endpoint = _accounts_endpoint + '/{0}/line_items'
-    _promoted_tweets_endpoint = _accounts_endpoint + '/{0}/promoted_tweets'
-    _stats_endpoint = _base_endpoint + '/stats/accounts/{0}/promoted_tweets'
 
-    def __init__(self, prepared_request):
-        # Used to determine url and parameters to request.
+    def __init__(self):
+        return
         self._request = prepared_request
-
-        # Used to store the data returned by send.
         self._data = []
         self._errors = []
 
@@ -172,24 +143,7 @@ class Adapter(object):
         elif self.request.resource == 'line_items':
             return self._line_items_endpoint.format(
                 self.request.required_parameters['account_id'])
-        elif self.request.resource == 'promoted_tweets':
-            return self._promoted_tweets_endpoint.format(
-                self.request.required_parameters['account_id'])
-        elif self.request.resource == 'stats':
-            return self._stats_endpoint.format(
-                self.request.required_parameters['account_id'])
         raise TypeError('Resource not recognised')
-
-    @property
-    def params(self):
-        # If the resource requested is stats, some required parameters need to be passed
-        # along with the optional parameters.
-        if self.request.resource == 'stats':
-            opt_params = self.request.optional_parameters
-            req_params = self.request.required_parameters
-            opt_params['promoted_tweet_ids'] = req_params['promoted_tweet_ids']
-            opt_params['start_time'] = req_params['end_time']
-        return self.request.optional_parameters
 
     def __repr__(self):
         return '<Twitter Adapter [Ads API]>'
@@ -212,24 +166,18 @@ class Response(object):
     entities.
 
     """
-    data = ListDescriptor()
-    errors = ListDescriptor()
 
     def __init__(self, data=None, errors=None):
         self.data = data if data else []
         self.errors = errors if errors else []
 
-    @property
-    def ok(self):
+    def __bool__(self):
         if not self.errors:
             return True
         return False
 
-    def __bool__(self):
-        return self.ok
-
     def __repr__(self):
-        if self.ok:
+        if self:
             return '<Twitter Response [OK]>'
         return '<Twitter Response [Incomplete]>'
 
