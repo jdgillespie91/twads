@@ -1,4 +1,3 @@
-import re
 from distutils.core import setup
 
 
