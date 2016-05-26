@@ -4,7 +4,7 @@ from distutils.core import setup
 setup(
     name='twads',
     packages=['twads'],
-    version='0.1.2',
+    version='0.1.3',
     description='A wrapper for the Twitter Ads API',
     author='Jacob Gillespie',
     author_email='jdgillespie91@gmail.com',
