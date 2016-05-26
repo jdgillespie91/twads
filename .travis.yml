@@ -2,9 +2,7 @@ language: python
 python: 3.5
 install: pip install -r requirements.txt
 branches:
-  only: 
-    - master
-    - /^([0-9]+)\.([0-9]+)\.([0-9]+)$/
+  only: /^([0-9]+)\.([0-9]+)\.([0-9]+)$/
 before_script: flake8 .
 script: py.test
 deploy:
