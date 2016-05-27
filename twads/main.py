@@ -12,4 +12,7 @@ class Client:
     def get_accounts(self):
         url = 'https://ads-api.twitter.com/0/accounts'
         response = requests.get(url, auth=self.auth)
-        return response.json()['data']
+        try:
+            return response.json()['data']
+        except KeyError:
+            return response.json()['errors']
