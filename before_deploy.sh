@@ -25,7 +25,7 @@ function bump_version {
     fi
 }
 
-function push_version {
+function push_version_to_github {
     # We need to prevent the build here since we're pushing to master.
     git add setup.py
     git commit -m "[ci skip] Bump version"
@@ -35,17 +35,15 @@ function push_version {
     git push origin master
 }
 
-function push_tags {
-    git tag -a "${release_version}" -m "Version ${release_version}"
-    git push origin "refs/tags/${release_version}"
+function push_release_to_github {
     curl -s -X POST -H "Authorization: Basic ${TWADS_TOKEN}" -H "Accept: application/vnd.github.v3+json" -H "Content-Type: application/json" -d '{"tag_name": "'${release_version}'"}' "https://api.github.com/repos/jdgillespie91/twads/releases"
 }
 
 function main {
     setup
     bump_version
-    push_version
-    push_tags
+    push_version_to_github
+    push_release_to_github
 }
 
 main
