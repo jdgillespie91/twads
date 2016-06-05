@@ -14,12 +14,16 @@ sed -i "s/${version}/${release_version}/" "${setup_file}"
 
 # Git stuff
 cd ${travis_build_dir}
-
 git config user.email "jdgillespie91@gmail.com"
 git config user.name "Jake Gillespie"
+git remote set-url origin "https://${TWADS_TOKEN}@github.com/jdgillespie91/twads.git"
+
 git add setup.py
 git commit -m "[ci skip] Bump version"
-git remote set-url origin "https://${TWADS_TOKEN}@github.com/jdgillespie91/twads.git"
+
+git branch bump-version
+git checkout master
+git merge bump-version
 git push origin master
 
 # Create the release.
