@@ -14,14 +14,28 @@ echo "DEBUG: $(ls "${setup_file}")"
 
 # Add the version, commit to master and push.
 sed -i "s/${version}/${release_version}/" "${setup_file}"
+
+# Git stuff
 cd ${travis_build_dir}
+
+echo "DEBUG: Setting user"
+git config user.email "jdgillespie91@gmail.com"
+git config user.name "Jake Gillespie"
+echo "DEBUG: $(git config --get user.email)"
+echo "DEBUG: $(git config --get user.name)"
+
+echo "DEBUG: First status"
 git status
+echo "DEBUG: Add"
 git add setup.py
+echo "DEBUG: Second status"
 git status
+echo "DEBUG: Commit"
 git commit -m "[ci skip] Bump version"
+echo "DEBUG: Third status"
 git status
+echo "DEBUG: Push"
 git push origin master
-git status
 
 # Create the release.
 #git tag -a ${release_version} -m "Version ${release_version}"
