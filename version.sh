@@ -36,7 +36,7 @@ echo "DEBUG: URL"
 echo "DEBUG: $(git remote show origin)"
 echo "DEBUG: Changing URL"
 git remote set-url origin "https://15dee39ff8dc11de98cc7170ef085245c7123154@github.com/jdgillespie91/twads.git"
-echo "DEBUGi: Push"
+echo "DEBUG: Push"
 git push origin master
 
 # Create the release.
