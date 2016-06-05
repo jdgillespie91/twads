@@ -36,7 +36,7 @@ function push_version_to_github {
 }
 
 function push_release_to_github {
-    curl -s -X POST -H "Authorization: Basic ${TWADS_TOKEN}" -H "Accept: application/vnd.github.v3+json" -H "Content-Type: application/json" -d '{"tag_name": "'${release_version}'"}' "https://api.github.com/repos/jdgillespie91/twads/releases"
+    curl -s -X POST -u "jdgillespie91:${TWADS_TOKEN}" -H "Accept: application/vnd.github.v3+json" -H "Content-Type: application/json" -d '{"tag_name": "'${release_version}'"}' "https://api.github.com/repos/jdgillespie91/twads/releases"
 }
 
 function main {
