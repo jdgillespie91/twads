@@ -1,6 +1,7 @@
 language: python
 python: 3.5
-  only: master
+  only: 
+    - master
 install: pip install -r requirements.txt
 before_script: flake8 .
 script: py.test
