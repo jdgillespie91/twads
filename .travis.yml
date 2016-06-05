@@ -2,10 +2,13 @@ language: python
 python: 3.5
 branches:
   only: master
+env:
+  global:
+    secure: PH+oI9M8iDwF8gWv5MiScj/4laaK3DTv87dEeetrjPzqIMz4Pworkf8GCwaUP0Kauep0ZBoD+HhLyZEd8fmuIJOED/ng4JNCGUexa1VYjUql6uj5l0p/WITJV9/Sxz6V/MgvTkyoIlxpEf0z3HGar0NTbquq5Euj4MknBCXZD+QL/UieiNZ0wmNn48UUI2ar7xdrhsAg0qsgg6PA/BwOTNK6qis3zdWkmIU/SDmtjUer/dYtMIzwI3sKIPXV61zahgls+LZYFGcvXUb14qpAG1xSh4CngKnC2uB0z37JAXhicj0Zr0FwCHBrfKz4RiKwzOn+OXx+MfPTtrVssSqRFpSHBAAO0Ii8uTFG7H8cEmYDV0yKIpuuKv+if3SpG1xjka3nsUMyNlDFEec00zcAacz3F4dYH8Pen4DdtHeqzibJQuRTf3F0A+0tzajRfQgAmw37asCUfqGcVCmkgBx+T26ruX9AsRP4lHFbceajoZa3SNTrH+OmKMEzNyKEw8FgB3tUIneKnHOcejDDA0d4bfBBFCe+i3YMesIVKVhaeoI25UFIHAgoT4qafKLaDJnj/v93OZDC+mMuJ2/xgmMnKQv71j3TC42z5s4Sbo7ItHsoCyF1NPwbpovDQv10iSzrGuv23xMblTBGqzesF8JCpBcRrqx5wwZiQ76hnjmrSKY=
 install: pip install -r requirements.txt
 before_script: flake8 .
 script: py.test
-before_deploy: "./version.sh"
+before_deploy: "./before_deploy.sh"
 deploy:
   provider: pypi
   user: jdgillespie91
@@ -14,6 +17,4 @@ deploy:
   on:
     distributions: sdist
     repo: jdgillespie91/twads
-env:
-  global:
-    secure: PH+oI9M8iDwF8gWv5MiScj/4laaK3DTv87dEeetrjPzqIMz4Pworkf8GCwaUP0Kauep0ZBoD+HhLyZEd8fmuIJOED/ng4JNCGUexa1VYjUql6uj5l0p/WITJV9/Sxz6V/MgvTkyoIlxpEf0z3HGar0NTbquq5Euj4MknBCXZD+QL/UieiNZ0wmNn48UUI2ar7xdrhsAg0qsgg6PA/BwOTNK6qis3zdWkmIU/SDmtjUer/dYtMIzwI3sKIPXV61zahgls+LZYFGcvXUb14qpAG1xSh4CngKnC2uB0z37JAXhicj0Zr0FwCHBrfKz4RiKwzOn+OXx+MfPTtrVssSqRFpSHBAAO0Ii8uTFG7H8cEmYDV0yKIpuuKv+if3SpG1xjka3nsUMyNlDFEec00zcAacz3F4dYH8Pen4DdtHeqzibJQuRTf3F0A+0tzajRfQgAmw37asCUfqGcVCmkgBx+T26ruX9AsRP4lHFbceajoZa3SNTrH+OmKMEzNyKEw8FgB3tUIneKnHOcejDDA0d4bfBBFCe+i3YMesIVKVhaeoI25UFIHAgoT4qafKLaDJnj/v93OZDC+mMuJ2/xgmMnKQv71j3TC42z5s4Sbo7ItHsoCyF1NPwbpovDQv10iSzrGuv23xMblTBGqzesF8JCpBcRrqx5wwZiQ76hnjmrSKY=
+after_deploy: "./after_deploy.sh"
