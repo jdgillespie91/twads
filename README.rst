@@ -7,4 +7,4 @@ Twads
 
 Welcome to Twads.
 
-Currently, this package does nothing. Soon, it'll do exactly what you need... possibly.
+Currently, this package does nothing. Soon, it'll do exactly what you need.
