@@ -46,4 +46,4 @@ function main {
     push_release_to_github
 }
 
-#main
+main
