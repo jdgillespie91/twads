@@ -7,10 +7,10 @@ release_version=${version/%${version##*.}/$((${version##*.}+1))}
 echo "Release version: ${release_version}"
 
 # Add the version, commit to master and push.
-#sed -i "" "s/${version}/${release_version}/" setup.py
-#git add setup.py
-#git commit -m "[auto] Bump version"
-#git push origin master
+sed -i "" "s/${version}/${release_version}/" setup.py
+git add setup.py
+git commit -m "[ci skip] Bump version"
+git push origin master
 
 # Create the release.
 #git tag -a ${release_version} -m "Version ${release_version}"
