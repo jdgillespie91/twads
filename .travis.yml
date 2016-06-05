@@ -17,4 +17,3 @@ deploy:
   on:
     distributions: sdist
     repo: jdgillespie91/twads
-after_deploy: "./after_deploy.sh"
