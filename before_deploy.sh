@@ -38,7 +38,7 @@ function push_version {
 function push_tags {
     git tag -a "${release_version}" -m "Version ${release_version}"
     git push origin "refs/tags/${release_version}"
-    curl -s -X POST -H "Authorization: Basic amRnaWxsZXNwaWU5MTpjMmM5NTdlODc2MGQxNDlkNDUwM2MxNDBiNWY1ZWRlYWVmMGM5NTc2" -H "Accept: application/vnd.github.v3+json" -H "Content-Type: application/json" -d '{"tag_name": "'${release_version}'"}' "https://api.github.com/repos/jdgillespie91/twads/releases"
+    curl -s -X POST -H "Authorization: Basic ${TWADS_TOKEN}" -H "Accept: application/vnd.github.v3+json" -H "Content-Type: application/json" -d '{"tag_name": "'${release_version}'"}' "https://api.github.com/repos/jdgillespie91/twads/releases"
 }
 
 function main {
