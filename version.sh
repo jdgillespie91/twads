@@ -9,8 +9,12 @@ echo "Current version: ${version}"
 release_version=${version/%${version##*.}/$((${version##*.}+1))}
 echo "Release version: ${release_version}"
 
+echo "DEBUG: ${setup_file}"
+echo "DEBUG: $(ls "${setup_file}")"
+echo "DEBUG: ${setup_file}"
+
 # Add the version, commit to master and push.
-sed -i "" "s/${version}/${release_version}/" "${setup_file}"
+sed -i "s/${version}/${release_version}/" "${setup_file}"
 git add "{setup_file}"
 git commit -m "[ci skip] Bump version"
 git push origin master
