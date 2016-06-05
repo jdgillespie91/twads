@@ -11,11 +11,13 @@ echo "Release version: ${release_version}"
 
 echo "DEBUG: ${setup_file}"
 echo "DEBUG: $(ls "${setup_file}")"
-echo "DEBUG: ${setup_file}"
 
 # Add the version, commit to master and push.
+cat ${setup_file}
 sed -i "s/${version}/${release_version}/" "${setup_file}"
-git add "{setup_file}"
+cat ${setup_file}
+cd ${travis_build_dir}
+git add setup.py
 git commit -m "[ci skip] Bump version"
 git push origin master
 
