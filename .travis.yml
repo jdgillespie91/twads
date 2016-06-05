@@ -1,7 +1,7 @@
 language: python
 python: 3.5
-  only: 
-    - master
+branches:
+  only: master
 install: pip install -r requirements.txt
 before_script: flake8 .
 script: py.test
@@ -11,3 +11,6 @@ deploy:
   user: jdgillespie91
   password:
     secure: BfcWiEVUT7KPm8po4mk0SUq7P6AH8F2PvudzKVN1Ch/byUCXKcrsR7rd1C2aR5ZmnDqEkWHBIKkBC+r94luvnHJQD+ToG9ROVO9hiIZ2SfAmjPMH3VbqfuLTvk+beatCH+a27O+qE7eTiFmEBlw53GGGdnDYqMMaXsG7EVF4t0bya+zX6rdX09XYCKCiwNyNV4gZ6QxHl6O3fyi8NCxuMHEWj99wBJ+Vdbp+cEOzHcR17WCzwVaZrDl5Wtk2YMme2deZXyuzzCHgZa7z751qRw6BJ11k9hpNZctDZ/cW47+6GyxfeWzpRWp6E5Q6kHgCoINX9Dy+1LC5FDpZEOzKBi0NQjzQWOspuKzDngWlvkxAZ0YQa2yWY5+Mc28kMIqCv/WCnq3wB+4Qdo5EKndFzHj3jV0tWkNSgSbUp2uou4LDBtvIUU09qhZ8mWTlrdOkz0qANmDeYf7I5quDZ19ivlA60T/ViYxTwMkwE5YvTcXyNNZwE/HNm2sRvqG3hJqhc6lnJYnL6xKTmW0x3PsS+nNU24JcDqHuoRemIbL5414fimHzripl+M7siLYNx44brd9b1o77tqgYKKWq+OScgMhOqyPdM/ZNaCSfY+L3BYh11dIT0Ru4+1gM4uOGd4RoLTSBVjDrNV5JFiVbwmpyn7JZEmRXorNA8nLFOJPdErA=
+  on:
+    distributions: sdist
+    repo: jdgillespie91/twads
