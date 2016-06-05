@@ -1,14 +1,17 @@
 #!/bin/bash
 
+travis_build_dir="/home/travis/build/jdgillespie91/twads"
+setup_file="${travis_build_dir}/setup.py"
+
 # Determine release version (increment revision number only).
-version=$(grep version setup.py | cut -d\' -f2)
+version=$(grep version "${setup_file}" | cut -d\' -f2)
 echo "Current version: ${version}"
 release_version=${version/%${version##*.}/$((${version##*.}+1))}
 echo "Release version: ${release_version}"
 
 # Add the version, commit to master and push.
-sed -i "" "s/${version}/${release_version}/" setup.py
-git add setup.py
+sed -i "" "s/${version}/${release_version}/" "${setup_file}"
+git add "{setup_file}"
 git commit -m "[ci skip] Bump version"
 git push origin master
 
