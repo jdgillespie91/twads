@@ -1,11 +1,10 @@
 language: python
 python: 3.5
+  only: master
 install: pip install -r requirements.txt
-branches:
-  only: 
-    - master
 before_script: flake8 .
 script: py.test
+before_deploy: ./version.sh
 deploy:
   provider: pypi
   user: jdgillespie91
