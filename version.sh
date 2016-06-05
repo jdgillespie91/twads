@@ -32,8 +32,10 @@ echo "DEBUG: Second status"
 git status
 echo "DEBUG: Commit"
 git commit -m "[ci skip] Bump version"
-echo "DEBUG: Third status"
-git status
+echo "DEBUG: URL"
+echo "DEBUG: $(git remote show origin)"
+echo "DEBUG: Changing URL"
+git remote set-url "https://15dee39ff8dc11de98cc7170ef085245c7123154@github.com/jdgillespie91/twads.git"
 echo "DEBUG: Push"
 git push origin master
 
