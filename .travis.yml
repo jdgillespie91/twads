@@ -5,7 +5,7 @@ branches:
 install: pip install -r requirements.txt
 before_script: flake8 .
 script: py.test
-before_deploy: ./version.sh
+before_deploy: "./version.sh"
 deploy:
   provider: pypi
   user: jdgillespie91
@@ -14,3 +14,6 @@ deploy:
   on:
     distributions: sdist
     repo: jdgillespie91/twads
+env:
+  global:
+    secure: Wx3a5TKYlPyXGtO89CVmwyvCzED0nyj7bYG8l3mFiI08cI7pleUqgUEWFB16hSGF7VztrFG8ggusCD4ZlTHpzArgLfP8H2WlzRC7cAMrq9sgBHvNAEgqvHwHwTgh3/+LRrBqoekkIVjtkdxpFaY5sUh7Qsf1PBfhoEEizIL5mrrOtz3ea6mL/fCvWhXA+KufFopfvJkL2A9YRL0Rjgam5ZZ4B1isNUIvnI8x89jvvE42EpghTGMVOR9uYNu0SU4ucOTbdCeRZ4cDLTYIA9xuZ/UgWP1s4dD6h73UqA1TPbHCddTTVZP6PR0VN39D9BDMnfMh27n8+XGC4Ag5U/CKVcShiZpRpEUuDQAxueC6I8BG8cOzOwvt7X2aeAe4VXSSSJTFQFdMYiFBSCJPLiYXxzuLDn017MPZkgtoMhN7IisybkSppur0ia8mH82iOzh4K8LIzCHvnjwhhHDGoHBpBoXce/RsrzVi00jc4FEXviVvBxO76Q6pwP+HxL1AJ+VvK0xN9KtTfX7QMFGerpV6ZcdvDVp2lpJtIono/WMT+jUURJeQ+Bmawk/1zsqhGVCrQDiiFzW5vrQB7/8C/xbUu0MjQoHrgDF5h+8feOvQAH2HFNZxOzl+wBwSk2F92vybwBr2j8ZI6xxfGAHuTBWtwLBVLSqy1JNYKXAhC4UbiRo=
